@@ -1,0 +1,31 @@
+# Node.js
+node_modules/
+
+# Angular
+/dist/
+/tmp/
+*.log
+*.scss
+*.css
+*.css.map
+*.html
+*.js
+*.js.map
+
+# Visual Studio Code
+.vscode/
+.settings/
+.history/
+
+# IDE and OS-specific files
+.idea/
+.DS_Store
+Thumbs.db
+
+# Angular testing artifacts
+/karma-*.conf.js
+/protractor.conf.js
+e2e/*.log
+e2e/*.json
+
+.angular/
