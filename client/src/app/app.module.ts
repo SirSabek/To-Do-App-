@@ -9,9 +9,8 @@ import { TaskEditComponent } from './components/tasks/task-edit/task-edit.compon
 import { TaskItemComponent } from './components/tasks/task-list/task-item/task-item.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NgToastModule } from 'ng-angular-popup' 
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { HeaderComponent } from './components/header/header.component';
@@ -28,7 +27,6 @@ import { RouterModule } from '@angular/router';
     TaskItemComponent,
     LoginComponent,
     SignupComponent,
-    DashboardComponent,
     HeaderComponent,
     TaskStartComponent
   ],
@@ -38,7 +36,8 @@ import { RouterModule } from '@angular/router';
     ReactiveFormsModule,
     HttpClientModule,
     NgToastModule,
-    RouterModule
+    RouterModule,
+    FormsModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

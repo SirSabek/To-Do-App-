@@ -1,7 +1,7 @@
 export class Task {
     id!: number;
     description!: string;
-    isCompleted!: boolean;
+    isComplete!: boolean;
     createdAt!: Date;
     completedAt!: Date;
 }

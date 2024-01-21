@@ -28,22 +28,35 @@ export class SignupComponent {
   }
   
   onSubmit() {
-    if (this.signUpForm.valid) {
+    if (this.checkFormValidation()) {
+      console.log('Form is valid. Submitting...');
+
       this.authService.register(this.signUpForm.value)
         .subscribe({
           next: (res) => {
-            console.log(res);
-            this.signUpForm.reset();
+            console.log('Registration successful:', res);
             this.router.navigate(['/login']);
           },
-          error: (err: Error) => {
-            console.log(err);
+          error: (err) => {
+            console.error('Registration failed:', err);
           }
         });
     } else {
+      console.log('Form is invalid. Check for validation errors.');
+      //log the form validation errors
+      console.log("errors", this.signUpForm);
       ValidateForm.validateAllFormFields(this.signUpForm);
     }
   }
+  
+
+  checkFormValidation() {
+    if (!this.signUpForm.errors) {
+      return true;
+    }
+    return false;
+  }
+  
 
   togglePasswordVisibility() {
     this.hidePassword = !this.hidePassword;

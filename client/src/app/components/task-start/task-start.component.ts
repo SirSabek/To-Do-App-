@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-task-start',
@@ -7,4 +8,12 @@ import { Component } from '@angular/core';
 })
 export class TaskStartComponent {
 
+  taskCount: number = 0;
+
+  constructor(private apiService: ApiService) { }
+
+  ngOnInit(): void {
+    this.apiService.tasks$.subscribe(tasks => this.taskCount = tasks.length);
+  }
+  
 }

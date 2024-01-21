@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService, JwtModule } from "@auth0/angular-jwt";
+import { Observable, catchError, tap } from 'rxjs';
 
 
 @Injectable({
@@ -15,12 +16,26 @@ export class AuthService {
     this.userPayLoad = this.decodeToken();
    }
 
-  register(data: any) {
-    return this.http.post(this.baseUrl + "register", data);
+   register(data: any): Observable<any> {
+    return this.http.post(this.baseUrl + "register", data)
+      .pipe(
+        catchError((error) => {
+          console.error('Error during registration:', error);
+          throw error; 
+        })
+      );
   }
 
   login(data: any) {
-    return this.http.post(this.baseUrl + "login", data);
+    return this.http.post(this.baseUrl + 'login', data).pipe(
+      tap((res) => {
+        console.log('Login successful:', res);
+      }),
+      catchError((error) => {
+        console.error('Login failed:', error);
+        throw error; 
+      })
+    );
   }
 
   storeToken(tokenValue: string) {
@@ -43,7 +58,6 @@ export class AuthService {
   decodeToken() {
     const jwtHelper = new JwtHelperService();
     const token = this.getToken()!;
-    console.log(jwtHelper.decodeToken(token));
     return jwtHelper.decodeToken(token);
   }
 

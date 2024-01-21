@@ -14,7 +14,8 @@ export class TaskListComponent {
   constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
-    this.apiService.getTasks().subscribe((data: Task[]) => {
+    this.apiService.refreshTasks();
+    this.apiService.tasks$.subscribe((data: Task[]) => {
       this.tasks = data;
     });
   }
